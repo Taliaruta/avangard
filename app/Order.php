@@ -45,7 +45,13 @@ class Order extends Model
         $mails[] = $this->client_email;
 
         foreach($mails as $mail) {
-            Notification::route('mail', $mail)->notify(new OrderNotification($this));
+            try {
+            
+                Notification::route('mail', $mail)->notify(new OrderNotification($this));
+            
+            } catch (\Exception $e) {
+                logger($e->getMessage());
+            }
         }
     }
 
