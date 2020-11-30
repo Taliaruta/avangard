@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'OrderController@index');
+Route::get('orders/edit/{order}', 'OrderController@edit')->name('orders.edit');
+Route::post('orders/edit/{order}', 'OrderController@update')->name('orders.update');
+Route::get('orders/{type?}', 'OrderController@index')->name('orders');
+
+Route::get('weather', 'WeatherController@index')->name('weather');
